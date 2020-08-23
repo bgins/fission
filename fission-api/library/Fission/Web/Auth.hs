@@ -1,4 +1,4 @@
-module Fission.Web.API.Auth
+module Fission.Web.Auth
   ( Checks
   -- * Reexports
   , module Fission.Web.API.Auth.Types

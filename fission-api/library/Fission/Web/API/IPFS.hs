@@ -6,10 +6,9 @@ module Fission.Web.API.IPFS
   , UnauthedAPI
   ) where
 
-import           Network.IPFS
 import           Servant.API
 
--- import qualified Fission.Web.Auth.Types        as Auth
+import qualified Fission.Web.Auth.Types        as Auth
 
 import qualified Fission.Web.API.IPFS.CID      as CID
 import qualified Fission.Web.API.IPFS.DAG      as DAG

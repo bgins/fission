@@ -4,7 +4,7 @@ module Fission.Web.API.Ping
   ) where
 
 import           Fission.Web.API.Ping.Types
-import           Servant
+import           Servant.API
 
 type API
   = Summary "Simple Ping"

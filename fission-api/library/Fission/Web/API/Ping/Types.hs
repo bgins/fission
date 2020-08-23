@@ -1,9 +1,15 @@
 module Fission.Web.API.Ping.Types (Pong (..)) where
 
-import           Data.Swagger    hiding (name)
-import           Servant
+import           Control.Lens        ((?~))
 
-import           Fission.Prelude
+import           Data.Aeson
+import           Data.Swagger        hiding (name)
+
+import           Flow
+import           RIO
+import qualified RIO.ByteString.Lazy as Lazy
+
+import           Servant.API
 
 -- | A dead-simple text wrapper.
 --   Primarily exists for customized instances.
@@ -26,4 +32,4 @@ instance ToSchema Pong where
       |> pure
 
 instance MimeRender PlainText Pong where
-  mimeRender _proxy = displayLazyBS . unPong
+  mimeRender _proxy = Lazy.fromStrict . encodeUtf8 . unPong

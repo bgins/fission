@@ -3,7 +3,7 @@ module Fission.Web.API.DNS (API) where
 import           Network.IPFS.CID.Types
 import           Servant.API
 
-import           Fission.URL
+import           Fission.Web.URL.Types
 
 type API
   =  Summary "Set account's DNSLink"

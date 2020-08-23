@@ -1,12 +1,16 @@
 module Fission.Web.URL.DomainName.Types (DomainName (..)) where
 
-import qualified RIO.ByteString.Lazy as Lazy
-import qualified RIO.Char            as Char
-import qualified RIO.Text            as Text
-
-import           Data.Swagger        hiding (get, host)
-
+import           Data.Aeson
+import           Data.Bifunctor
+import           Data.Swagger         hiding (get, host)
+import           Database.Persist.Sql hiding (get)
+import           RIO
+import qualified RIO.ByteString.Lazy  as Lazy
+import qualified RIO.Char             as Char
+import qualified RIO.Text             as Text
 import           Servant.API
+import           Test.QuickCheck
+import           Web.PathPieces
 
 -- | Type safety wrapper for domain names
 newtype DomainName = DomainName { get :: Text }
@@ -30,7 +34,6 @@ instance Arbitrary DomainName where
 instance Display DomainName where
   textDisplay (DomainName txt) = txt
 
--- FIXME aaaaah this will need to actually be an orphan
 instance PersistField DomainName where
   toPersistValue (DomainName name') = PersistText name'
   fromPersistValue = \case
