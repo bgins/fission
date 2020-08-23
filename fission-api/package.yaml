@@ -99,8 +99,6 @@ dependencies:
   - data-default-class
   - data-has
   - dns
-  - envy
-  - esqueleto
   - exceptions
   - file-embed
   - filepath
@@ -108,7 +106,6 @@ dependencies:
   - fsnotify
   - generic-lens
   - Glob
-  - haskeline
   - http-client
   - http-client-tls
   - http-media
@@ -122,14 +119,10 @@ dependencies:
   - monad-time
   - mtl
   - network-uri
-  - optparse-applicative
-  - optparse-simple
   - parallel
   - path-pieces
   - pem
   - persistent
-  - persistent-postgresql
-  - persistent-template
   - pretty-simple
   - QuickCheck
   - quickcheck-instances
@@ -144,9 +137,6 @@ dependencies:
   - servant
   - servant-auth-server
   - servant-auth-swagger
-  - servant-client
-  - servant-client-core
-  - servant-server
   - servant-swagger
   - servant-swagger-ui
   - servant-swagger-ui-redoc
@@ -176,45 +166,8 @@ dependencies:
 library:
   source-dirs: library
 
-executables:
-  fission-server:
-    main: Main.hs
-    source-dirs: server
-    dependencies:
-      - fission-api
-      - raven-haskell
-      - wai-logger
-    ghc-options:
-      - -threaded
-      - -flate-specialise
-      - -rtsopts
-      - -with-rtsopts=-N
-      - -with-rtsopts=-T
-      - -optc-ffast-math
-      - -optc-O3
-      - -O2
-
-  fission-cli:
-    main: Main.hs
-    source-dirs: cli
-    dependencies:
-      - fission-api
-      - wai-logger
-    ghc-options:
-      - -threaded
-      - -flate-specialise
-      - -rtsopts
-      - -with-rtsopts=-N
-      - -with-rtsopts=-T
-      - -optc-ffast-math
-      - -optc-O3
-      - -O2
-    # uncomment to build a static binary on Linux
-    # cc-options: -static
-    # ld-options: -static -pthread
-
 tests:
-  fission-doctest:
+  fission-api-doctest:
     main: Main.hs
     source-dirs: doctest
     ghc-options:
@@ -229,7 +182,7 @@ tests:
       - lens-aeson
       - yaml
 
-  fission-test:
+  fission-api-test:
     main: Main.hs
     source-dirs:
       - library
@@ -255,7 +208,7 @@ tests:
       - tasty-rerun
       - transformers
 
-  fission-lint:
+  fission-api-lint:
     main: Main.hs
     source-dirs: lint
     dependencies:
@@ -264,7 +217,7 @@ tests:
       - rio
 
 benchmarks:
-  fission-benchmark:
+  fission-api-benchmark:
     main: Main.hs
     source-dirs: benchmark
     ghc-options:
